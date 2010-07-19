@@ -1,0 +1,21 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3156
+
+This syntax file highlights the wikilinks and directives in IkiWiki files
+(.mdwn)
+
+Please note that this syntax definition only defines highlighting for directives
+and wikilinks, *not* markdown files. To obtain proper highlighting of ikiwiki
+files (markdown + wikilinks/directives), you must install the Markdown syntax
+file (vimscript #1242).
+
+You can also use this syntax definition if you use reST, by installing the reST
+syntax file (vimscript #973), and putting the following in your .vimrc file:
+
+    let g:ikiwiki_render_filetype = 'rest'
+
+This step is not required for using markdown files.
+
+This syntax file has a git repository; you can clone it with:
+
+git clone http://git.devnull.li/ikiwiki-syntax.git
+

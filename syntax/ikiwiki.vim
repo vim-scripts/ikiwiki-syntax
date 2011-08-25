@@ -27,7 +27,9 @@ if !exists("b:current_syntax")
 	exe 'runtime! syntax/' . s:ikiwiki_render_filetype . '.vim'
 endif " }}}1
 
-unlet b:current_syntax
+if exists("b:current_syntax")
+	unlet b:current_syntax
+endif
 
 syn case match
 
@@ -51,7 +53,7 @@ syn region ikiBla matchgroup=ikiLinkDelim start=+\[\[\ze[^!]+ end=+\]\]+
 syn region ikiNoLink start=+\\\[\[+ end=+\]\]+ 
 
 syn match ikiLinkNameSep !|! contained nextgroup=ikiLinkText
-syn match ikiLinkText !\(\w\|-\| \|/\)\+! contained
+syn match ikiLinkText !\(\w\|[ -/#.]\)\+! contained
 syn match ikiLinkVName !\_[^\]|]\+\ze|! contained nextgroup=ikiLinkNameSep
 " }}}1
 
@@ -62,7 +64,7 @@ syn cluster ikiDirVal contains=ikiDirParamValSimple,ikiDirParamValQuoted,ikiDirP
 syn region ikiDirDelim start=+\[\[\!+ end=+\]\]+ contains=@ikiDirContents fold
 
 syn match ikiDirName !\w\+! contained nextgroup=ikiDirParamName skipwhite
-syn match ikiDirParamName !\(\w\|[/:]\)\+! contained nextgroup=ikiDirAssign,ikiDirParamName skipwhite
+syn match ikiDirParamName !\(\w\|[/:.-]\)\+! contained nextgroup=ikiDirAssign,ikiDirParamName skipwhite
 syn match ikiDirAssign !=! contained nextgroup=@ikiDirVal skipwhite
 syn match ikiDirParamValSimple ![^" \]]\+! contained nextgroup=ikiDirParamName skipwhite skipnl
 syn region ikiDirParamValQuoted start=!"! skip=!\\"! end=!"! contained nextgroup=ikiDirParamName skipwhite skipnl
